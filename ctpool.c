@@ -350,9 +350,13 @@ void ctp_clear_queue(ctpool_t pool)
 {
     struct pool_t* const p = (struct pool_t*)pool;
     pthread_mutex_lock(&p->mutex);
+    if (p->old_count != NON_PAUSED_VALUE) {
+        p->old_count = 0U;
+    }
+    else {
+        p->queue_count = 0U;
+    }
     p->head = 0U;
-    p->queue_count = 0U;
-    p->old_count = 0U;
     pthread_mutex_unlock(&p->mutex);
 }
 
@@ -378,7 +382,7 @@ void ctp_finish(ctpool_t pool, unsigned int* spawned)
         }
 
         if (spawned != NULL) {
-            *spawned = p->running;
+            *spawned = running;
         }
 
         pthread_mutex_unlock(&p->mutex);
