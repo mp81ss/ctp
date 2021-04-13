@@ -203,6 +203,9 @@ ctpool_t ctp_init(unsigned int threads_num, unsigned int queue_size, int block)
                     p->queue_size = CTP_MIN_QUEUE_SIZE;
                 }
             }
+            if (p->queue_size == NON_PAUSED_VALUE) {
+                p->queue_size--;
+            }
 
             p->queue = (struct worker_t*) malloc(sizeof(struct worker_t)
                                                  * (size_t)(p->queue_size));

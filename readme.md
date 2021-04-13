@@ -9,6 +9,7 @@ While easy to use, it has some interesting features:
 - Can spawn the best number of threads according to detected cpu
 - Lazy thread activation
 - Ability to pause/resume
+- Automatic/custom queue size
 - Can block when adding work or discard if queue is full (best effort)
 - Possibility to know how many threads were effectively spawned
 - Dedicated API to query status in any moment (paused/idle/working)

@@ -24,8 +24,8 @@ typedef void* (*pool_worker_t)(void*);
  *            zero, ctp will try to guess your cores number.
  *            See ctp_get_threads_num()
  * @param[in] queue_size The size of queue. If you pass zero, ctp will calculate
- *            the queue size according to three parameters. For details, see
- *            ctp_get_queue_size()
+ *            the queue size according to three parameters. Must be less than
+ *            \a UINT_MAX. For details, see ctp_get_queue_size()
  * @param[in] block Non-zero if ctp_add_work() will block. Passing zero, if the
  *            queue is full, ctp_add_work() will fail
  * @return NULL on error, non NULL if pool is properly initialized
